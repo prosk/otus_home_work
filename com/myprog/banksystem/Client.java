@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Client {
-    private final static int MIN_CLIENT_AGE = 18;
-    private final static int MAX_CLIENT_AGE = 90;
+    private final static int MIN_CLIENT_AGE = 20;
+    private final static int MAX_CLIENT_AGE = 95;
 
     // уникальный идентификатор клиента
     private final int id;
