@@ -11,8 +11,8 @@ public class Main {
         // Создаем 3-х клиентов и их счета
         // Client baby = new Client(1, "Baby", LocalDate.of(2020, 12, 10)); // будет ошибка, т.к. возраст неверный
 
-        Client frodo = new Client(1, "Frodo Baggins", LocalDate.of(2000, 12, 10));
-        Client gendalf = new Client(2, "Gendalf Gray", LocalDate.of(2001, 11, 15));
+        Client frodo = new Client(1, "Фродо Бэггинс", LocalDate.of(2000, 12, 10));
+        Client gendalf = new Client(2, "Гендальф Серый", LocalDate.of(2001, 11, 15));
 
         Account frodoDeposit = new Account(11);
         Account frodoCarCredit = new Account(12);
