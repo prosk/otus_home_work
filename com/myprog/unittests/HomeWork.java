@@ -18,13 +18,13 @@ public class HomeWork {
 
     public static void testDiceForNotConstant() {
         String scenario = "Проверка, что бросание кости не возвращает одно и то же значение";
-        int RollCnt = 100;
+        int rollCnt = 100;
         try {
             Dice dice = new DiceImpl();
             int firstValue = dice.roll();
             int i = 0;
-            while (dice.roll() == firstValue && i < RollCnt) i++;
-            if (i == RollCnt) {
+            while (dice.roll() == firstValue && i < rollCnt) i++;
+            if (i == rollCnt) {
                 throw new AssertionError("Бросание кости дает одинаковое значение " + firstValue);
             }
             System.out.printf("\"%s\" passed %n", scenario);
@@ -36,10 +36,10 @@ public class HomeWork {
 
     public static void testDiceForRangeCorrectness() {
         String scenario = "Проверка, что бросание кости возвращает числа от 1 до 6";
-        int RollCnt = 100;
+        int rollCnt = 100;
         try {
             Dice dice = new DiceImpl();
-            for (int i = 1; i <= RollCnt; i++) {
+            for (int i = 1; i <= rollCnt; i++) {
                 Assertions.assertRange(1, 6, dice.roll());
             }
             System.out.printf("\"%s\" passed %n", scenario);
@@ -53,28 +53,18 @@ public class HomeWork {
 
         StringBuffer winners = new StringBuffer();
 
-        Dice fakeDice = new Dice() {
-            @Override
-            public int roll() {
-                return 2;
-            }
-        };
+        Dice fakeDice = () -> 2;
 
-        GameWinnerPrinter stringWinnerPrinter = new GameWinnerPrinter() {
-            @Override
-            public void printWinner(Player winner) {
-                winners.append(winner.getName());
-            }
-        };
+        GameWinnerPrinter stringWinnerPrinter = winner -> winners.append(winner.getName());
 
         try {
             Game game = new Game(fakeDice, stringWinnerPrinter);
             String firstPlayerName = "Вася", secondPlayerName = "Игорь";
             game.playGame(new Player(firstPlayerName), new Player(secondPlayerName));
 
-            String WinnerName = winners.toString();
+            String winnerName = winners.toString();
 
-            if (WinnerName.equals(firstPlayerName) || WinnerName.equals(secondPlayerName)) {
+            if (winnerName.equals(firstPlayerName) || winnerName.equals(secondPlayerName)) {
                 throw new AssertionError("В игре есть победитель, хотя у 2-х игроков выпало одинаковое значение");
             }
             System.out.printf("\"%s\" passed %n", scenario);
@@ -96,21 +86,16 @@ public class HomeWork {
             }
         };
 
-        GameWinnerPrinter stringWinnerPrinter = new GameWinnerPrinter() {
-            @Override
-            public void printWinner(Player winner) {
-                winners.append(winner.getName());
-            }
-        };
+        GameWinnerPrinter stringWinnerPrinter = winner -> winners.append(winner.getName());
 
         try {
             Game game = new Game(fakeDice, stringWinnerPrinter);
             String firstPlayerName = "Вася", secondPlayerName = "Игорь";
             game.playGame(new Player(firstPlayerName), new Player(secondPlayerName));
 
-            String WinnerName = winners.toString();
+            String winnerName = winners.toString();
 
-            if (!WinnerName.equals(secondPlayerName)) {
+            if (!winnerName.equals(secondPlayerName)) {
                 throw new AssertionError("В игре неверно определен победитель");
             }
             System.out.printf("\"%s\" passed %n", scenario);
