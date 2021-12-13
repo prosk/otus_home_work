@@ -47,7 +47,8 @@ public class TextFileLoader {
                 try {
                     fileBufferedReader.close();
                 }catch(IOException e) {
-                    // Ничего не делаем
+                    // Печатаем стек вызова
+                    e.printStackTrace(System.err);
                 }
             }
         }
