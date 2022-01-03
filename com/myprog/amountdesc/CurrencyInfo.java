@@ -23,9 +23,7 @@ public class CurrencyInfo {
         this.fullUniqueName = fullUniqueName;
         this.kindOfWord = kindOfWord;
         this.digitToDesc = new String[digitToDesc.length];
-        for(int i = 0; i < digitToDesc.length; i++) {
-            this.digitToDesc[i] = digitToDesc[i];
-        }
+        System.arraycopy(digitToDesc, 0, this.digitToDesc, 0, digitToDesc.length);
     }
 
     public String getDescForDigit(int digit) {
