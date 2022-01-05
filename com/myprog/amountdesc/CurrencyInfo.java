@@ -26,8 +26,20 @@ public class CurrencyInfo {
         System.arraycopy(digitToDesc, 0, this.digitToDesc, 0, digitToDesc.length);
     }
 
-    public String getDescForDigit(int digit) {
-        return digitToDesc[digit];
+    public String getDescForAmount(long amount) {
+        int descriptionIndex;
+        int lastTwoDigit = (int) (amount % 100);
+        int lastDigit = (int) (amount % 10);
+        if (lastTwoDigit >=11 && lastTwoDigit <= 19) {
+            descriptionIndex = 0;
+        }else {
+            descriptionIndex = lastDigit;
+        }
+        return digitToDesc[descriptionIndex];
+    }
+
+    public KindOfWord getKindOfWord() {
+        return kindOfWord;
     }
 
     @Override
