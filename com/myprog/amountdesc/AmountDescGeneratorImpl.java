@@ -57,7 +57,6 @@ public class AmountDescGeneratorImpl implements AmountDescGenerator {
         if (amount <= 0 || amount >= MAX_AMOUNT_VALUE) {
             throw new IllegalArgumentException("Значение должно быть больше нуля и меньше 1 триллиона");
         }
-
         // Выделяем блоки по 3 цифры: начальные (с 1 до 999), тысячи, миллионы, миллиарды
         int beginAmount = (int) (amount % 1000);
         int thousandsAmount = (int) ( (amount / 1000) % 1000 );
@@ -65,7 +64,6 @@ public class AmountDescGeneratorImpl implements AmountDescGenerator {
         int billionsAmount = (int) ( (amount / 1_000_000_000) % 1000 );
 
         String fullDesc = "";
-
         String billionsDesc = get3digitBlockDesc(billionsAmount, NumberBlockType.BILLIONS);
         if (!billionsDesc.isEmpty()) {
             fullDesc = fullDesc + billionsDesc + " ";
@@ -84,12 +82,7 @@ public class AmountDescGeneratorImpl implements AmountDescGenerator {
         }
 
         fullDesc = fullDesc + currencyInfo.getDescForAmount(amount);
-
         return fullDesc;
-
-        // return "/" + beginAmount + "/" + thousandsAmount + "/" + millionsAmount + "/" + billionsAmount;
-
-        //return Long.toString(amount) + " " + currencyInfo.getDescForDigit((int) (amount % 10));
     }
 
     private String get3digitBlockDesc(int amount, NumberBlockType blockType) {
